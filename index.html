@@ -11,7 +11,11 @@
     <meta name="robots" content="index,follow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Kerry M. Toorcana Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -23,12 +27,71 @@
             background-color: #333;
             color: #fff;
             padding: 20px 0;
-            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+        .header-left {
+            display: flex;
+            flex-direction: column;
+            padding-left: 20px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .title-and-social {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding-left: 20px;
+        }
+        .header-social {
+            margin-top: 8px;
+        }    
+        .header-social a {
+            color: white;
+            margin-right: 10px;
+            font-size: 20px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .header-social a:hover {
+            color: #007bff;
+        }
+        .nav-links {
+            padding-right: 20px;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 16px;
+        }
+        .nav-links a:hover {
+            color: #007bff;
+            text-decoration: underline;
+        }
+        section {
+            padding: 100px 0;
         }
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+        }
+        .about-flex {
+            display: flex; /* Creates side by side layout */
+            align-items: center;
+            gap: 40px; /* space between image and text */
+            flex-wrap: wrap; /* Allows for stacking */
+        }
+        .about-img {
+            flex-shrink: 0;
         }
         .profile-img {
             width: 300px;
@@ -36,6 +99,49 @@
             border-radius: 50%;
             margin: 0 auto;
             display: block;
+            max-width: 100%;
+            height: auto;
+        }
+        .about-text {
+            flex: 1;
+            max-width: 800px;
+        }
+        @media (max-width: 768px) { /* creates mobile friendly layout */
+            .about-flex {
+                flex-direction: column;
+                text-align: center;
+            }
+            .about-text {
+                padding-top: 20px;
+            }
+        }
+        .resume-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+        .resume-button:hover {
+            background-color: #0056b3;
+        }
+        .contact-button {
+            display: inline-block;
+            margin-left: 15px;
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+        .contact-button:hover {
+            background-color: #0056b3;    
         }
         .social-links a {
             margin: 0 15px;
@@ -58,37 +164,68 @@
     </style>
 </head>
 <body>
-
+    <div id="top"></div>
     <header>
-        <h1>Kerry M. Toorcana Portfolio</h1>
+        <div class="header-left">
+            <h1>
+                <a href="#top" style="color: white; text-decoration: none;">
+                    Kerry M. Toorcana Portfolio
+                </a>
+            </h1>
+            <div class="header-social">
+                <a href="https://www.linkedin.com/in/kerrytoorcana/"
+                    target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                    <i class="fab fa-linkedin fa-lg"></i>
+                </a>
+                <a href="https://github.com/ktoorcana" 
+                    target="_blank" rel="noopener noreferrer" title="Github">
+                    <i class="fab fa-github fa-lg"></i>
+                </a>
+                <a href="https://www.instagram.com/kerryhtx/"  
+                    target="_blank" rel="noopener noreferrer" title="Instagram">
+                    <i class="fab fa-instagram fa-lg"></i>
+                </a>
+                <a href="https://www.flickr.com/people/202078742@N05/"
+                    target="_blank" rel="noopener noreferrer" title="Flickr">
+                    <i class="fab fa-flickr fa-lg"></i>
+                </a>
+                <a href="https://bsky.app/profile/kerryhtx.bsky.social"
+                    target="_blank" rel="noopener noreferrer" title="BlueSky">
+                    <i class="fab fa-globe fa-lg"></i>
+                </a>
+            </div>
+        </div>
+        <nav class="nav-links">
+            <a href="#about">About Me</a>
+        </nav>
     </header>
 
     <div class="container">
-        <!-- Profile Section -->
-        <section class="profile">
-            <img src="/images/KerryMToorcana400x400.webp" alt="Kerry M. Toorcana" class="profile-img" />
-            <h2>Kerry M. Toorcana</h2>
-            <p>Welcome to my portfolio! I am a marketer who uses photography, videography, 
-            data insights, and other multimedia applications in my daily workflow. I am 
-            also an aspiring coder, currently learning Python and some basic 
-            web-development languages. Explore my portfolio, skills and experience 
-            to learn more about me.</p>
-        </section>
 
-        <!-- Social Links Section -->
-        <section class="social-links">
-            <h3>Find me on:</h3>
-            <a href="https://www.linkedin.com/in/kerrytoorcana/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a href="https://github.com/ktoorcana" target="_blank" rel="noopener noreferrer">Github</a>
-            <a href="https://www.instagram.com/kerryhtx/" target="_blank" rel="noopener noreferrer">Instagram</a>
-            <a href="https://www.flickr.com/photos/202078742@N05/" target="_blank" rel="noopener noreferrer">Flickr</a>
-            <a href="https://bsky.app/profile/kerryhtx.bsky.social" target="_blank" rel="noopener noreferrer">Bluesky</a>
-        </section>
-
-        <!-- Resume Section -->
-        <section class="resume">
-            <h3>My Resume</h3>
-            <p><a href="https://drive.google.com/file/d/1XYm_aSgPgMNXf4as8rUXMK9mCADMcac3/view?usp=sharing" target="_blank" rel="noopener noreferrer">View my resume</a></p>
+        <!-- Profile Section About Me -->
+        <section id="about" class="container about-flex">
+            <div class="about-img">
+                <img src="images/KerryMToorcana400x400.webp" alt="Kerry M. Toorcana" class="profile-img" loading="lazy" />
+            </div>
+            <div class="about-text">
+                <h2>About Me</h2>
+                <p>
+                    Hi, my name is Kerry M. Toorcana and welcome to my portfolio! I am 
+                    a marketer who uses photography, videography, data insights, and 
+                    other multimedia applications in my daily workflow. I am also an 
+                    aspiring coder, currently learning Python and some basic 
+                    web-development languages. Explore my portfolio, skills and 
+                    experience to learn more about me.
+                </p>
+                <a href="https://drive.google.com/file/d/1XYm_aSgPgMNXf4as8rUXMK9mCADMcac3/view?usp=sharing"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="resume-button">
+                    My Resume
+                </a>
+                <a href="mailto:kerrytoorcana@gmail.com" 
+                class="resume-button contact-button">Contact Me</a>
+            </div>
         </section>
     </div>
 
