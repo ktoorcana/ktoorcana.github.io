@@ -12,8 +12,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Kerry M. Toorcana Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="shortcut icon" type="image/svg"
-        href ="{{ "images/icons/favicon.svg" | absolute_url }}">
+    <link rel="shortcut icon" type="image/png"
+        href ="{{ "images/icons/favicon.png" | absolute_url }}">
     <style>
         html {
             scroll-behavior: smooth;
@@ -52,6 +52,7 @@
             align-items: flex-start;
             padding-left: 20px;
         }
+        /* Social Header Links */
         .header-social {
             margin-top: 8px;
         }    
@@ -73,6 +74,7 @@
         .social-links a:hover {
             color: #007bff;
         }
+        /* Navigation Header Anchor Links */
         .nav-links {
             padding-right: 20px;
         }
@@ -117,6 +119,12 @@
             margin-top: 0;
             margin-bottom: 16px;
             line-height: 1.5;
+        }
+        .skill-icon {
+            width: 24px;
+            height: 24px;
+            vertical-align: middle;
+            margin-right: 10px;
         }
         @media (max-width: 768px) {
             .skills-columns {
@@ -241,25 +249,43 @@
             <h2>Skills</h2>
             <div class="skills-columns">
                 <div class="skills-col">
-                    <h4>Advertising Platforms</h4>
+                    <h4>
+                        <img src="images/icons/advertising.png" title="Advertising Platforms" alt="Advertising Icon" class=""skill-icon" loading="lazy">
+                        Advertising Platforms
+                    </h4>
                     <p>Google Adwords, Meta Business Suite, Revinate, Sprout Social</p>
 
-                    <h4>Content Production</h4>
+                    <h4>
+                        <img src="images/icons/content.png" title="Content Production" alt="Content Icon" class=""skill-icon" loading="lazy">
+                        Content Production
+                    </h4>
                     <p>Blog Writing, Copywriting, Graphic Design, Photography, Videography</p>
                 
-                    <h4>Desktop Software</h4>
+                    <h4>
+                        <img src="images/icons/desktop.png" title="Desktop Software" alt="Desktop Icon" class=""skill-icon" loading="lazy">
+                        Desktop Software
+                    </h4>
                     <p><em>Adobe Suite:</em> Illustrator, InDesign, Lightroom, Photoshop, Premiere Pro</p>
                     <p><em>MS-Office:</em> Excel, Outlook, PowerPoint, Word</p>
                     <p>Jupyter Notebook, VS Code, Visual Studio</p>
                 </div>
                 <div class="skills-col">
-                    <h4>Professional Knowledge</h4>
+                    <h4>
+                        <img src="images/icons/profession.png" title="Professional Knowledge" alt="Professional Icon" class=""skill-icon" loading="lazy">
+                        Professional Knowledge
+                    </h4>
                     <p>Budgeting, Brand Marketing, Event Marketing & Operations, Forecasting, Settlement, Social Media Marketing</p>
                 
-                    <h4>Programming Languages & Libraries</h4>
+                    <h4>
+                        <img src="images/icons/program.png" title="Programming Languages & Libraries" alt="Programming Icon" class=""skill-icon" loading="lazy">
+                        Programming Languages & Libraries
+                    </h4>
                     <p>CSS & HTML, Matplotlib, Python</p>
 
-                    <h4>Web Platforms</h4>
+                    <h4>
+                        <img src="images/icons/web.png" title="Web Platforms" alt="Web Icon" class=""skill-icon" loading="lazy">
+                        Web Platforms
+                    </h4>
                     <p>Asana, Canva, Github, Google Analytics, Looker Studio, Meltwater, Midjourney, OpenAI tools, Runway ML, SurveyMonkey, Webflow CMS, WordPress</p>
                 </div>
             </div>
