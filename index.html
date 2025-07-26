@@ -96,6 +96,70 @@
             margin: 0 auto;
             padding: 20px;
         }
+        /* Portfolio Section 
+           Photography Gallery */
+        .gallery {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px
+        }
+        .thumb {
+            width: 200px;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: transform 0.2s ease;
+        }
+        .thumb:hover {
+            transform: scale(1.05);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            overflow: auto;
+        }
+        .modal-content {
+            position: relation;
+            margin: 5% auto;
+            max-width: 800px;
+            text-align: center;
+            color: #fff;
+        }
+        .modal-content img {
+            width: 100%;
+            max-height: 500px;
+            border-radius: 8px;
+        }
+        .modal-thumbs {
+            display: flex;
+            overflow-x: auto;
+            gap: 10px;
+            margin-top: 20px;
+            padding: 10px;
+            justify-content: center;
+        }
+        .modal-thumbs img {
+            width: 100px;
+            height: auto;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .caption {
+            margin-top: 10px;
+            font-style: italic;
+        }
+        .close {
+            position: absolute;
+            top: 10px; right: 20px;
+            font-size: 36px;
+            color: white;
+            cursor: pointer;    
+        }
+
         /* Skills Section */
         .skills-flex {
             padding-top: 60px;
@@ -237,12 +301,46 @@
             </div>
         </div>
         <nav class="nav-links">
-            <a href="#about">About Me</a>
+            <a href="#portfolio">Portfolio</a>
             <a href="#skills">Skills</a>
+            <a href="#about">About Me</a>
         </nav>
     </header>
 
     <div class="container">
+
+        <!-- Section Portfolio -->
+        <section id="portfolio" class="container">
+            <h2>Portfolio</h2>
+            <h3>Photography</h3>
+            <div class="gallery">
+                <!-- 4 visible thumbnails -->
+                <img src="images/photos/thumb1.jpg" alt="Photo 1" class="thumb" onclick="openModal(0)">
+                <img src="images/photos/thumb2.jpg" alt="Photo 2" class="thumb" onclick="openModal(1)">
+                <img src="images/photos/thumb3.jpg" alt="Photo 3" class="thumb" onclick="openModal(2)">
+                <img src="images/photos/thumb4.jpg" alt="Photo 4" class="thumb" onclick="openModal(3)">
+            </div>
+
+            <!-- Modal Gallery Structure -->
+            <div id="modal" class="modal">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <div class=""modal-content">
+                    <img id=""modal-image" src="" alt="">
+                    <div id=""modal-caption" class="caption"></div>
+                    <div class="modal-thumbs">
+                        <!-- Scrollable thumbnails inside modal -->
+                        <img src="images/photos/image1.jpg" onclick="showImage(0)">
+                        <img src="images/photos/image2.jpg" onclick="showImage(1)">
+                        <img src="images/photos/image3.jpg" onclick="showImage(2)">
+                        <img src="images/photos/image4.jpg" onclick="showImage(3)">
+                        <img src="images/photos/image5.jpg" onclick="showImage(4)">
+                        <img src="images/photos/image6.jpg" onclick="showImage(5)">
+                        <img src="images/photos/image7.jpg" onclick="showImage(6)">
+                        <img src="images/photos/image8.jpg" onclick="showImage(7)">
+                    </div>
+                </div>
+            </div> 
+        </section>
 
         <!-- Section Skills -->
         <section id="skills" class="container skills-flex">
@@ -322,5 +420,31 @@
         <p>&copy; 2025 Website Designed & Built by Kerry M. Toorcana (Work in Progress)</p>
     </footer>
    
+    <script>
+        const captions = [
+            "Image 1: Black-bellied ducks stay still while floating on the waters of Whistler Pond located in Anahuac, TX.",
+            "Image 2: Aerialist Dom Liebentritt performs at the Moody Gardens Hotel during the Holiday Fantasy show.",
+            "Image 3: Wine glasses filled with different varietals for the wine dinner event at Shearn's Seafood & Prime Steaks.",
+            "Image 4: High view of the Assiduity Mural painted on the side of the Sam Houston Hotel as seen from the Harris County Civil Courthouse.",
+            "Image 5: Thomas Gu of TeaGu Cafe pop-up prepares morsels during the Sake Festival at POST Houston.",
+            "Image 6: Graffit painted in the words of 'Texas' with a line of custom cars at the Harrisburg Arts Museum car show.",
+            "Image 7: Model Lauren Vickrey's professional headshot taken in the warehouse district of Houston.",
+            "Image 8: A swamp rabbit munches on the delicious vegetation found on property at Moody Gardens."
+        ];
+
+        function openModal(index) {
+            document.getElementById("modal").style.display = "block";
+            showImage(index);
+        }
+        function closeModal() {
+            document.getElementById("modal").style.display = "none";
+        }
+        function showImage(index) {
+            const modalImg = document.getElementById("modal-image");
+            const captionText = document.getElementById("modal-caption");
+            modalImg.src = 'images/photos/fulL${index + 1}.jpg';
+            captionText.textContent = captions[index]
+        }
+    </script>    
 </body>
 </html>
