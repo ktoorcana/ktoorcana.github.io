@@ -123,16 +123,19 @@
             overflow: auto;
         }
         .modal-content {
-            position: relation;
+            position: relative;
             margin: 5% auto;
             max-width: 800px;
             text-align: center;
             color: #fff;
         }
         .modal-content img {
-            width: 100%;
             max-height: 500px;
+            max-width: 100%;
             border-radius: 8px;
+            display: block;
+            margin: 0 auto;
+            object-fit: contain;
         }
         .modal-thumbs {
             display: flex;
@@ -143,14 +146,24 @@
             justify-content: center;
         }
         .modal-thumbs img {
-            width: 100px;
-            height: auto;
-            cursor: pointer;
+            width: auto;
+            height: 100px;
+            object-fit: cover;
             border-radius: 4px;
+            transition: transform 0.3s ease;
+        }
+        .modal-thumbs img:hover {
+            transform: scale(1.1);
         }
         .caption {
-            margin-top: 10px;
+            margin-top: 15px;
             font-style: italic;
+            font-size: 16px;
+            color: #fff;
+            text-align: center;
+            background-color: rgba(0,0,0,0.6); /* Optional: background for contrast */
+            padding: 10px;
+            border-radius: 6px;
         }
         .close {
             position: absolute;
