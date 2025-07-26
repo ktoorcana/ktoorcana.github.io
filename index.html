@@ -357,6 +357,7 @@
         <!-- Section Portfolio -->
         <section id="portfolio" class="container">
             <h2>Portfolio</h2>
+            <!-- Photography Subsection -->
             <h3>Photography</h3>
             <div class="gallery">
                 <!-- 4 visible thumbnails -->
@@ -364,9 +365,10 @@
                 <img src="images/photos/thumb2.jpg" alt="Photo 2" class="thumb" onclick="openModal(1)">
                 <img src="images/photos/thumb3.jpg" alt="Photo 3" class="thumb" onclick="openModal(2)">
                 <img src="images/photos/thumb4.jpg" alt="Photo 4" class="thumb" onclick="openModal(3)">
+                <img src="images/photos/thumb5.jpg" alt="Photo 4" class="thumb" onclick="openModal(4)">
             </div>
 
-            <!-- Modal Gallery Structure -->
+            <!-- Photography Modal Gallery Structure -->
             <div id="modal" class="modal">
                 <span class="close" onclick="closeModal()">&times;</span>
                 <div class="modal-content">
@@ -385,9 +387,16 @@
                         <img src="images/photos/image6.jpg" onclick="showImage(5)">
                         <img src="images/photos/image7.jpg" onclick="showImage(6)">
                         <img src="images/photos/image8.jpg" onclick="showImage(7)">
+                        <img src="images/photos/image9.jpg" onclick="showImage(8)">
+                        <img src="images/photos/image10.jpg" onclick="showImage(9)">
                     </div>
                 </div>
             </div> 
+            <!-- Design Work Subsection -->
+            <h3>Design Work (Illustrator, InDesign, Photoshop)</h3>
+            <div class="gallery">
+                
+            </div>
         </section>
 
         <!-- Section Skills -->
@@ -470,14 +479,14 @@
    
     <script>
         const captions = [
-            "Image 1: Black-bellied ducks stay still while floating on the waters of Whistler Pond located in Anahuac, TX.",
-            "Image 2: Aerialist Dom Liebentritt performs at the Moody Gardens Hotel during the Holiday Fantasy show.",
-            "Image 3: Wine glasses filled with different varietals for the wine dinner event at Shearn's Restaurant.",
-            "Image 4: High view of the Assiduity Mural painted on the side of the Sam Houston Hotel.",
-            "Image 5: Thomas Gu of TeaGu Cafe pop-up prepares morsels during the Sake Festival at POST Houston.",
-            "Image 6: Graffit painted in 'Texas'lettering with a row of custom cars in front at the Harrisburg Arts Museum.",
-            "Image 7: Model Lauren Vickrey's professional headshot taken in the warehouse district of Houston.",
-            "Image 8: A swamp rabbit munches on the delicious vegetation found on property at Moody Gardens."
+            "Black-bellied ducks stay still while floating on the waters of Whistler Pond located in Anahuac, TX.",
+            "Aerialist Dom Liebentritt performs at the Moody Gardens Hotel during the Holiday Fantasy show.",
+            "Wine glasses filled with different varietals for the wine dinner event at Shearn's Restaurant.",
+            "High view of the Assiduity Mural painted on the side of the Sam Houston Hotel.",
+            "Thomas Gu of TeaGu Cafe pop-up prepares morsels during the Sake Festival at POST Houston.",
+            "Graffit painted in 'Texas'lettering with a row of custom cars in front at the Harrisburg Arts Museum.",
+            "Model Lauren Vickrey's professional headshot taken in the warehouse district of Houston.",
+            "A swamp rabbit munches on the delicious vegetation found on property at Moody Gardens."
         ];
 
         function openModal(index) {
