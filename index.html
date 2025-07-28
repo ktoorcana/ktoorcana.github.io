@@ -172,19 +172,25 @@
             display: flex;
             overflow-x: auto;
             gap: 10px;
-            margin-top: 20px;
+            margin: 20px auto 10px;
             padding: 10px;
-            justify-content: center;
+            justify-content: flex-start;
+            max-width: 90%;
+            scroll-snap-type: x mandatory;
         }
         .modal-thumbs img {
             height: 100px;
-            width: auto;
-            object-fit: cover;
-            border-radius: 4px;
-            transition: transform 0.3s ease;
+            scroll-snap-align: center;
+            transition: transform 0.3s ease, border 0.3s ease;
+            cursor: pointer;
         }
         .modal-thumbs img:hover {
             transform: scale(1.1);
+        }
+        .modal-thumbs img.selected {
+            border: 3px solid #007bff;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.7);
+            border-radius: 6px;
         }
         .caption {
             margin-top: 15px;
@@ -517,26 +523,39 @@
             "Rows of cupcakes await diners during the Thanksgiving Brunch at the Moody Gardens Hotel."
         ];
 
+        let currentIndex = 0;
+
         function openModal(index) {
-            document.getElementById("modal").style.display = "block";
             currentIndex = index;
+            document.getElementById("modal").style.display = "block";
             showImage(currentIndex);
         }
         function closeModal() {
             document.getElementById("modal").style.display = "none";
         }
         function showImage(index) {
+            currentIndex = (index + captions.length) % captions.length;
+
             const modalImg = document.getElementById("modal-image");
             const captionText = document.getElementById("modal-caption");
-            
-            // Reset and trigger fade animation
-            modalImg.classList.remove("fade");
+            const thumbnails = document.querySelectorAll("#modal .modal-thumbs img");
+
+            // Fade-in transition
+            modalImg.classList.remove("fade-in");
             void modalImg.offsetWidth; // Forces reflow
-            modalImg.classList.add("fade");    
+            modalImg.classList.add("fade-in");    
 
             modalImg.src = `images/photos/image${index + 1}.jpg`;
             captionText.textContent = captions[index]
-        }
+            
+            // Highlight the selected thumbnail
+            thumbsnails.forEach((thumb, i) => {
+                thumb.classList.toggle('selected', i === index);
+                if (i === index) {
+                    thumb.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest"});
+                }
+            });
+        }    
         function changeImage(direction) {
             currentIndex = (currentIndex + direction + captions.length) % captions.length;
             showImage(currentIndex);
@@ -569,16 +588,29 @@
             document.getElementById("designModal").style.display = "none";
         }
         function showDesignImage(index) {
+            currentDesignIndex = (index + designCaptions.length) % designCaptions.length; //wraparound
+
             const modalImg = document.getElementById("design-modal-image");
             const captionText = document.getElementById("design-modal-caption");
+            const thumbnails = document.querySelectorAll('#designModal .modal-thumbs img');
 
-            currentDesignIndex = (index + designCaptions.length) % designCaptions.length; //wraparound
+            // Fade-in transition    
             modalImg.classList.remove("fade-in");
             void modalImg.offsetWidth; // trigger reflow
             modalImg.classList.add("fade-in");
 
             modalImg.src= `images/design/image${currentDesignIndex + 1}.jpg`;
             captionText.textContent = designCaptions[currentDesignIndex];
+
+            // Highlight the selected thumbnail
+            thumbnails.forEach((thumb, i) => {
+                thumb.classList.toggle('selected', i === currentDesignIndex);
+                // Scroll thumbnail into center view
+                if (i === currentDesignIndex) {
+                    // Scroll thumbnail into center view
+                    thumb.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest"});
+                }
+            });
         }
 
         function changeDesignImage(offset) {
