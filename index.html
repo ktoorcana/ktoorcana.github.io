@@ -96,8 +96,7 @@
             margin: 0 auto;
             padding: 20px;
         }
-        /* Portfolio Section 
-           Photography Gallery */
+        /* Modal Gallery */
         .gallery {
             display: flex;
             gap: 20px;
@@ -163,7 +162,7 @@
             object-fit: contain;
         }
         .fade {
-            animation: fadeIn 0.4s ease;
+            animation: fadeIn 0.4s ease-in-out;
         }
         @keyframes fadeIn {
             from { opacity: 0; }
@@ -361,11 +360,10 @@
             <h3>Photography</h3>
             <div class="gallery">
                 <!-- 4 visible thumbnails -->
-                <img src="images/photos/thumb1.jpg" alt="Photo 1" class="thumb" onclick="openModal(0)">
-                <img src="images/photos/thumb2.jpg" alt="Photo 2" class="thumb" onclick="openModal(1)">
-                <img src="images/photos/thumb3.jpg" alt="Photo 3" class="thumb" onclick="openModal(2)">
-                <img src="images/photos/thumb4.jpg" alt="Photo 4" class="thumb" onclick="openModal(3)">
-                <img src="images/photos/thumb5.jpg" alt="Photo 4" class="thumb" onclick="openModal(4)">
+                <img src="images/photos/thumb1.jpg" alt="Black-bellied ducks" class="thumb" onclick="openModal(0)">
+                <img src="images/photos/thumb2.jpg" alt="Aerialist performance" class="thumb" onclick="openModal(1)">
+                <img src="images/photos/thumb3.jpg" alt="Wine dinner" class="thumb" onclick="openModal(2)">
+                <img src="images/photos/thumb4.jpg" alt="Sam Houston Hotel" class="thumb" onclick="openModal(3)">
             </div>
 
             <!-- Photography Modal Gallery Structure -->
@@ -395,8 +393,35 @@
             <!-- Design Work Subsection -->
             <h3>Design Work (Illustrator, InDesign, Photoshop)</h3>
             <div class="gallery">
-                
+                <img src="images/design/thumb1.jpg" alt="Artificial Woman T-Shirt Design" class="thumb" onclick="openDesignModal(0)">
+                <img src="images/design/thumb2.jpg" alt="Cameo Sneaker Ad" class="thumb" onclick="openDesignModal(0)">
+                <img src="images/design/thumb3.jpg" alt="Mode Élevée" class="thumb" onclick="openDesignModal(0)">
+                <img src="images/design/thumb4.jpg" alt="Solar Living" class="thumb" onclick="openDesignModal(0)">
             </div>
+
+            <!-- Design Modal Gallery -->
+             <div id="designModal" class="modal">
+                <span class="close" onclick="closeDesignModal()">&times;</span>
+                <div class="modal-content">
+                    <span class="modal-prev" onclick="changeDesignImage(-1)">&#10094;</span>
+                    <span class="modal-next" onclick="changeDesignImage(1)">&#10095;</span>
+                    <img id="design-modal-image" src="" alt="">
+                    <div id="design-modal-caption" class="caption"></div>
+                    <div class="modal-thumbs">
+                        <img src="images/design/image1.jpg" onclick="showDesignImage(0)">
+                        <img src="images/design/image2.jpg" onclick="showDesignImage(1)">
+                        <img src="images/design/image3.jpg" onclick="showDesignImage(2)">
+                        <img src="images/design/image4.jpg" onclick="showDesignImage(3)">
+                        <img src="images/design/image5.jpg" onclick="showDesignImage(4)">
+                        <img src="images/design/image6.jpg" onclick="showDesignImage(5)">
+                        <img src="images/design/image7.jpg" onclick="showDesignImage(6)">
+                        <img src="images/design/image8.jpg" onclick="showDesignImage(7)">
+                        <img src="images/design/image9.jpg" onclick="showDesignImage(8)">
+                        <img src="images/design/image10.jpg" onclick="showDesignImage(9)">
+                    </div>
+                </div>
+            </div>
+
         </section>
 
         <!-- Section Skills -->
@@ -477,6 +502,7 @@
         <p>&copy; 2025 Website Designed & Built by Kerry M. Toorcana (Work in Progress)</p>
     </footer>
    
+    <!-- Photography javascript --> 
     <script>
         const captions = [
             "Black-bellied ducks stay still while floating on the waters of Whistler Pond located in Anahuac, TX.",
@@ -486,7 +512,7 @@
             "Thomas Gu of TeaGu Cafe pop-up prepares morsels during the Sake Festival at POST Houston.",
             "Graffit painted in 'Texas'lettering with a row of custom cars in front at the Harrisburg Arts Museum.",
             "Model Lauren Vickrey's professional headshot taken in the warehouse district of Houston.",
-             "A swamp rabbit munches on the delicious vegetation found on property at Moody Gardens.",
+            "A swamp rabbit munches on the delicious vegetation found on property at Moody Gardens.",
             "A vendor from Miratech speaks to a group at the Gas Compressors Association Expo.",
             "Rows of cupcakes await diners during the Thanksgiving Brunch at the Moody Gardens Hotel."
         ];
@@ -515,6 +541,50 @@
             currentIndex = (currentIndex + direction + captions.length) % captions.length;
             showImage(currentIndex);
         }
-    </script>    
+    </script>
+    
+    <!-- Design Work javascript -->
+     <script>
+        const designCaptions = [
+            "Artificial Woman: Image generated in Midjourney, Illustrator logo, Photoshop finish.",
+            "Cameo Sneaker Ad Concept. Midjourney image, Illustrator font, InDesign layout.",
+            "Mode Élevée Tourism Ad Concept. Designed in Illustrator and finalized in Photoshop.",
+            "Solar Living Renewable Energy Concept. Designed completely in Illustrator.",
+            "Hair Color Style 4-Up. Image manipulation using Photoshop.",
+            "Going Green PSA Garden Ad. Image generated in MidJourney, layout in InDesign.",
+            "Stellar Drifters Comic Book. Title in Illustrator, MidJourney image, Photoshop finish.",
+            "Watermelon Soda. Font in Illustrator, images by MidJourney, and Photoshop finish.",
+            "Spirit Dog. Image manipulation using stock images and assembled in Photoshop.",
+            "Wizard Drawing. Character designed in Illustrator with text added in Photoshop."
+        ];
+
+        let currentDesignIndex = 0;
+
+        function openDesignModal(index) {
+            currentDesignIndex = index;
+            document.getElementById("designModal").style.display = "block";
+            showDesignImage(currentDesignIndex);
+        }
+        function closeDesignModal(index) {
+            document.getElementById("designModal").style.display = "none";
+        }
+        function showDesignImage(index) {
+            const modalImg = document.getElementById("design-modal-image");
+            const captionText = document.getElementById("design-modal-caption");
+
+            currentDesignIndex = (index + designCaptions.length) % designCaptions.length; //wraparound
+            modalImg.classList.remove("fade-in");
+            void modalImg.offsetWidth; // trigger reflow
+            modalImg.classList.add("fade-in");
+
+            modalImg.src= `images/design/image${currentDesignIndex + 1}.jpg`;
+            captionText.textContent = designCaptions[currentDesignIndex];
+        }
+
+        function changeDesignImage(offset) {
+            showDesignImage(currentDesignIndex + offset);
+        }
+     </script>
+    
 </body>
 </html>
