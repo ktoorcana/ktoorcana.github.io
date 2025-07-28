@@ -545,13 +545,13 @@
             void modalImg.offsetWidth; // Forces reflow
             modalImg.classList.add("fade-in");    
 
-            modalImg.src = `images/photos/image${index + 1}.jpg`;
-            captionText.textContent = captions[index]
+            modalImg.src = `images/photos/image${currentIndex + 1}.jpg`;
+            captionText.textContent = captions[currentIndex]
             
             // Highlight the selected thumbnail
-            thumbsnails.forEach((thumb, i) => {
-                thumb.classList.toggle('selected', i === index);
-                if (i === index) {
+            thumbnails.forEach((thumb, i) => {
+                thumb.classList.toggle('selected', i === currentIndex);
+                if (i === currentIndex) {
                     thumb.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest"});
                 }
             });
