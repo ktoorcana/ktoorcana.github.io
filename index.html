@@ -4,10 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="Portfolio of Kerry Toorcana, a creative marketing 
-          professional who harnesses innovation to produce results.">
+          professional using innovation to produce results.">
     <meta name="keywords" content="toorcana, kerry, portfolio">
     <meta name="author" content="Kerry Michael Toorcana">
-    <meta name="date" content="2025-07-21T02:00:00+03:00">
+    <meta name="date" content="2025-07-31T02:00:00+03:00">
     <meta name="robots" content="index,follow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Kerry M. Toorcana Portfolio</title>
@@ -96,18 +96,74 @@
             margin: 0 auto;
             padding: 20px;
         }
+        /* Hero Banner */
+        .hero {
+            background: url("images/hero_banner.webp") center/cover no-repeat;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            color: white;
+            text-align: center;
+            position: relative;
+            padding: 0;
+            min-height: 300px; /* ensures visible height */
+        }
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.1); /* darken layer */
+            z-index: 1;
+        }
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        .hero-content h2,
+        .hero-content p {
+            display: none;
+        }
+        @media (min-width: 768px) {
+            .hero {
+                border-radius: 12px;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+        }
+        /* for small screens */
+        @media (max-width: 600px) { 
+            .hero {
+                border-radius: 0; 
+                max-width: 100%;
+            }
+        }
+
         /* Modal Gallery */
         .gallery {
             display: flex;
             gap: 20px;
             flex-wrap: wrap;
-            margin-top: 20px
+            margin-top: 20px;
+            justify-content: center;
         }
+        /*
         .thumb {
             width: 200px;
             cursor: pointer;
             border-radius: 6px;
             transition: transform 0.2s ease;
+        } */
+        .thumb {
+            width: 100%;
+            max-width: 200px; /* Cap at 200px for larger screens */
+            height: auto; /* maintain aspect ratio */
+            border-radius: 6px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            flex: 1 1 150px; /* allow thumbs to grow / shrink in grid */
         }
         .thumb:hover {
             transform: scale(1.05);
@@ -127,6 +183,17 @@
             max-width: 800px;
             text-align: center;
             color: #fff;
+        }
+        /* Modal Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .thumb {
+                max-width: 45%; /* Two per row on tablets */
+            }
+        }
+        @media (max-width: 480px) {
+            .thumb {
+                max-width: 100%; /* full width on phones */
+            }
         }
         /* Modal navigation arrow behavior */
         .modal-prev, .modal-next{
@@ -358,6 +425,15 @@
     </header>
 
     <div class="container">
+
+        <!-- Section Hero-->
+        <section class="hero">
+            <div class="container hero-content">
+        <!--    <h2>Welcome to My Site</h2>
+                <p>Where visual storytelling meets innovative marketing.</p> -->
+            </div>
+        </section>
+    
 
         <!-- Section Portfolio -->
         <section id="portfolio" class="container">
