@@ -1,0 +1,37 @@
+Portfolio of Kerry Toorcana, a creative marketing professional who utilizes innovation to produce results.
+
+
+Adding Custom Icons to Social Media Links (PNG, SVG, or WEBP)
+<a href="https://www.linkedin.com/in/kerrytoorcana/" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+    <img src="images/linkedin-custom-icon.png" alt="LinkedIn" class="social-icon">
+</a>
+
+
+Add this to your <style> section to control size and hover effect:
+.social-icon {
+    width: 24px; /* Adjust size as needed */
+    height: 24px;
+    margin-right: 10px;
+    vertical-align: middle;
+    transition: transform 0.3s ease;
+}
+
+.social-icon:hover {
+    transform: scale(1.2); /* Subtle zoom on hover */
+}
+
+Tips for Best Results:
+
+    Use SVG or WebP if you want sharper scaling or smaller file sizes
+
+    Match your icon background to the header (transparent is best)
+
+    Compress the icons with TinyPNG or similar if using PNGs
+
+    Name files clearly, like linkedin-icon.svg, github-icon.webp, etc.
+
+
+Put your icons in an images/icons/ folder and use relative paths:
+<img src="images/icons/github-icon.svg" alt="GitHub" class="social-icon">
+
+----------------------------------------------------------------

@@ -4,14 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="Portfolio of Kerry Toorcana, a creative marketing 
-          professional who harnesses innovation to produce results.">
+          professional using innovation to produce results.">
     <meta name="keywords" content="toorcana, kerry, portfolio">
     <meta name="author" content="Kerry Michael Toorcana">
-    <meta name="date" content="2025-07-21T02:00:00+03:00">
+    <meta name="date" content="2025-07-31T02:00:00+03:00">
     <meta name="robots" content="index,follow">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Kerry M. Toorcana Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="shortcut icon" type="image/png"
+        href ="{{ "images/icons/favicon.png" | absolute_url }}">
     <style>
+        html {
+            scroll-behavior: smooth;
+        }
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -23,19 +29,42 @@
             background-color: #333;
             color: #fff;
             padding: 20px 0;
-            text-align: left;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
         }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
+        .header-left {
+            display: flex;
+            flex-direction: column;
+            padding-left: 20px;
         }
-        .profile-img {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            margin: 0 auto;
-            display: block;
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .title-and-social {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding-left: 20px;
+        }
+        /* Social Header Links */
+        .header-social {
+            margin-top: 8px;
+        }    
+        .header-social a {
+            color: white;
+            margin-right: 10px;
+            font-size: 20px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .header-social a:hover {
+            color: #007bff;
         }
         .social-links a {
             margin: 0 15px;
@@ -45,9 +74,308 @@
         .social-links a:hover {
             color: #007bff;
         }
-        .resume {
+        /* Navigation Header Anchor Links */
+        .nav-links {
+            padding-right: 20px;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 16px;
+        }
+        .nav-links a:hover {
+            color: #007bff;
+            text-decoration: underline;
+        }
+        section {
+            padding: 100px 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        /* Hero Banner */
+        .hero {
+            background: url("images/hero_banner.webp") center/cover no-repeat;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            color: white;
+            text-align: center;
+            position: relative;
+            padding: 0;
+            min-height: 300px; /* ensures visible height */
+        }
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.1); /* darken layer */
+            z-index: 1;
+        }
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        .hero-content h2,
+        .hero-content p {
+            display: none;
+        }
+        @media (min-width: 768px) {
+            .hero {
+                border-radius: 12px;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+        }
+        /* for small screens */
+        @media (max-width: 600px) { 
+            .hero {
+                border-radius: 0; 
+                max-width: 100%;
+            }
+        }
+
+        /* Modal Gallery */
+        .gallery {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            justify-content: center;
+        }
+        /*
+        .thumb {
+            width: 200px;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: transform 0.2s ease;
+        } */
+        .thumb {
+            width: 100%;
+            max-width: 200px; /* Cap at 200px for larger screens */
+            height: auto; /* maintain aspect ratio */
+            border-radius: 6px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            flex: 1 1 150px; /* allow thumbs to grow / shrink in grid */
+        }
+        .thumb:hover {
+            transform: scale(1.05);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            overflow: auto;
+        }
+        .modal-content {
+            position: relative;
+            margin: 5% auto;
+            max-width: 800px;
+            text-align: center;
+            color: #fff;
+        }
+        /* Modal Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .thumb {
+                max-width: 45%; /* Two per row on tablets */
+            }
+        }
+        @media (max-width: 480px) {
+            .thumb {
+                max-width: 100%; /* full width on phones */
+            }
+        }
+        /* Modal navigation arrow behavior */
+        .modal-prev, .modal-next{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 40px;
+            color: #fff;
+            cursor: pointer;
+            user-select: none;
+            padding: 10px;
+            background-color: rgba(0,0,0,0.3);
+            border-radius: 50%;
+            z-index: 2100;
+            transition: background-color 0.3s ease;
+        }
+        .modal-prev:hover, .modal-next:hover {
+            background-color: rgba(0,0,0,0.6);
+        }
+        .modal-prev {
+            left: 20px;
+        }
+        .modal-next {
+            right: 20px;
+        }
+        /* Modal Image Content */
+        .modal-content img {
+            max-height: 500px;
+            max-width: 100%;
+            border-radius: 8px;
+            display: block;
+            margin: 0 auto;
+            object-fit: contain;
+        }
+        .fade {
+            animation: fadeIn 0.4s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .modal-thumbs {
+            display: flex;
+            overflow-x: auto;
+            gap: 10px;
+            margin: 20px auto 10px;
+            padding: 10px;
+            justify-content: flex-start;
+            max-width: 90%;
+            scroll-snap-type: x mandatory;
+        }
+        .modal-thumbs img {
+            height: 100px;
+            scroll-snap-align: center;
+            transition: transform 0.3s ease, border 0.3s ease;
+            cursor: pointer;
+        }
+        .modal-thumbs img:hover {
+            transform: scale(1.1);
+        }
+        .modal-thumbs img.selected {
+            border: 3px solid #007bff;
+            box-shadow: 0 0 10px rgba(0, 123, 255, 0.7);
+            border-radius: 6px;
+        }
+        .caption {
+            margin-top: 15px;
+            font-style: italic;
+            font-size: 16px;
+            color: #fff;
+            text-align: center;
+            background-color: rgba(0,0,0,0.6); /* Optional: background for contrast */
+            padding: 10px;
+            border-radius: 6px;
+        }
+        .close {
+            position: absolute;
+            top: 10px; right: 20px;
+            font-size: 36px;
+            color: white;
+            cursor: pointer;    
+        }
+
+        /* Skills Section */
+        .skills-flex {
+            padding-top: 60px;
+        }
+        .skills-columns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .skills-col {
+            flex: 1;
+            min-width: 280px;
+        }
+        .skills-col h4 {
+            margin-bottom: 5px;
+            font-size: 18px;
+        }
+        .skills-col p {
+            margin-top: 0;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+        .skill-icon {
+            width: 24px;
+            height: 24px;
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+        @media (max-width: 768px) {
+            .skills-columns {
+                flex-direction: column;
+            }
+        }
+
+        /* About Me Section */
+        .about-flex {
+            display: flex; /* Creates side by side layout */
+            align-items: center;
+            gap: 40px; /* space between image and text */
+            flex-wrap: wrap; /* Allows for stacking */
+        }
+        .about-img {
+            flex-shrink: 0;
+        }
+        .profile-img {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            margin: 0 auto;
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+        .about-text {
+            flex: 1;
+            max-width: 800px;
+        }
+        @media (max-width: 768px) { /* creates mobile friendly layout */
+            .about-flex {
+                flex-direction: column;
+                text-align: center;
+            }
+            .about-text {
+                padding-top: 20px;
+            }
+        }
+         .resume {
             margin-top: 30px;
         }
+        .resume-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+        .resume-button:hover {
+            background-color: #0056b3;
+        }
+        .contact-button {
+            display: inline-block;
+            margin-left: 15px;
+            padding: 12px 24px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 6px;
+            transition: background-color 0.3s ease;
+        }
+        .contact-button:hover {
+            background-color: #0056b3;    
+        } 
         footer {
             background-color: #333;
             color: #fff;
@@ -58,43 +386,313 @@
     </style>
 </head>
 <body>
-
+    <div id="top"></div>
     <header>
-        <h1>Kerry M. Toorcana Portfolio</h1>
+        <div class="header-left">
+            <h1>
+                <a href="#top" style="color: white; text-decoration: none;">
+                    Kerry M. Toorcana Portfolio
+                </a>
+            </h1>
+            <div class="header-social">
+                <a href="https://www.linkedin.com/in/kerrytoorcana/"
+                    target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                    <i class="fab fa-linkedin fa-lg"></i>
+                </a>
+                <a href="https://github.com/ktoorcana" 
+                    target="_blank" rel="noopener noreferrer" title="Github">
+                    <i class="fab fa-github fa-lg"></i>
+                </a>
+                <a href="https://www.instagram.com/kerryhtx/"  
+                    target="_blank" rel="noopener noreferrer" title="Instagram">
+                    <i class="fab fa-instagram fa-lg"></i>
+                </a>
+                <a href="https://www.flickr.com/people/202078742@N05/"
+                    target="_blank" rel="noopener noreferrer" title="Flickr">
+                    <i class="fab fa-flickr fa-lg"></i>
+                </a>
+                <a href="https://bsky.app/profile/kerryhtx.bsky.social"
+                    target="_blank" rel="noopener noreferrer" title="BlueSky">
+                    <i class="fab fa-globe fa-lg"></i>
+                </a>
+            </div>
+        </div>
+        <nav class="nav-links">
+            <a href="#portfolio">Portfolio</a>
+            <a href="#skills">Skills</a>
+            <a href="#about">About Me</a>
+        </nav>
     </header>
 
     <div class="container">
-        <!-- Profile Section -->
-        <section class="profile">
-            <img src="/images/KerryMToorcana400x400.webp" alt="Kerry M. Toorcana" class="profile-img" />
-            <h2>Kerry M. Toorcana</h2>
-            <p>Welcome to my portfolio! I am a marketer who uses photography, videography, 
-            data insights, and other multimedia applications in my daily workflow. I am 
-            also an aspiring coder, currently learning Python and some basic 
-            web-development languages. Explore my portfolio, skills and experience 
-            to learn more about me.</p>
+
+        <!-- Section Hero-->
+        <section class="hero">
+            <div class="container hero-content">
+        <!--    <h2>Welcome to My Site</h2>
+                <p>Where visual storytelling meets innovative marketing.</p> -->
+            </div>
+        </section>
+    
+
+        <!-- Section Portfolio -->
+        <section id="portfolio" class="container">
+            <h2>Portfolio</h2>
+            <!-- Photography Subsection -->
+            <h3>Photography</h3>
+            <div class="gallery">
+                <!-- 4 visible thumbnails -->
+                <img src="images/photos/thumb1.jpg" alt="Black-bellied ducks" class="thumb" onclick="openModal(0)">
+                <img src="images/photos/thumb2.jpg" alt="Aerialist performance" class="thumb" onclick="openModal(1)">
+                <img src="images/photos/thumb3.jpg" alt="Wine dinner" class="thumb" onclick="openModal(2)">
+                <img src="images/photos/thumb4.jpg" alt="Sam Houston Hotel" class="thumb" onclick="openModal(3)">
+            </div>
+
+            <!-- Photography Modal Gallery Structure -->
+            <div id="modal" class="modal">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <div class="modal-content">
+                    <!-- Adding navigation arrows to gallery -->
+                    <span class="modal-prev" onclick="changeImage(-1)">&#10094;</span>
+                    <span class="modal-next" onclick="changeImage(1)">&#10095;</span>
+                    <img id="modal-image" src="" alt="">
+                    <div id="modal-caption" class="caption"></div>
+                    <div class="modal-thumbs">
+                        <!-- Scrollable thumbnails inside modal -->
+                        <img src="images/photos/image1.jpg" onclick="showImage(0)">
+                        <img src="images/photos/image2.jpg" onclick="showImage(1)">
+                        <img src="images/photos/image3.jpg" onclick="showImage(2)">
+                        <img src="images/photos/image4.jpg" onclick="showImage(3)">
+                        <img src="images/photos/image5.jpg" onclick="showImage(4)">
+                        <img src="images/photos/image6.jpg" onclick="showImage(5)">
+                        <img src="images/photos/image7.jpg" onclick="showImage(6)">
+                        <img src="images/photos/image8.jpg" onclick="showImage(7)">
+                        <img src="images/photos/image9.jpg" onclick="showImage(8)">
+                        <img src="images/photos/image10.jpg" onclick="showImage(9)">
+                    </div>
+                </div>
+            </div> 
+            <!-- Design Work Subsection -->
+            <h3>Design Work (Illustrator, InDesign, Photoshop)</h3>
+            <div class="gallery">
+                <img src="images/design/thumb1.jpg" alt="Artificial Woman T-Shirt Design" class="thumb" onclick="openDesignModal(0)">
+                <img src="images/design/thumb2.jpg" alt="Cameo Sneaker Ad" class="thumb" onclick="openDesignModal(0)">
+                <img src="images/design/thumb3.jpg" alt="Mode Élevée" class="thumb" onclick="openDesignModal(0)">
+                <img src="images/design/thumb4.jpg" alt="Solar Living" class="thumb" onclick="openDesignModal(0)">
+            </div>
+
+            <!-- Design Modal Gallery -->
+             <div id="designModal" class="modal">
+                <span class="close" onclick="closeDesignModal()">&times;</span>
+                <div class="modal-content">
+                    <span class="modal-prev" onclick="changeDesignImage(-1)">&#10094;</span>
+                    <span class="modal-next" onclick="changeDesignImage(1)">&#10095;</span>
+                    <img id="design-modal-image" src="" alt="">
+                    <div id="design-modal-caption" class="caption"></div>
+                    <div class="modal-thumbs">
+                        <img src="images/design/image1.jpg" onclick="showDesignImage(0)">
+                        <img src="images/design/image2.jpg" onclick="showDesignImage(1)">
+                        <img src="images/design/image3.jpg" onclick="showDesignImage(2)">
+                        <img src="images/design/image4.jpg" onclick="showDesignImage(3)">
+                        <img src="images/design/image5.jpg" onclick="showDesignImage(4)">
+                        <img src="images/design/image6.jpg" onclick="showDesignImage(5)">
+                        <img src="images/design/image7.jpg" onclick="showDesignImage(6)">
+                        <img src="images/design/image8.jpg" onclick="showDesignImage(7)">
+                        <img src="images/design/image9.jpg" onclick="showDesignImage(8)">
+                        <img src="images/design/image10.jpg" onclick="showDesignImage(9)">
+                    </div>
+                </div>
+            </div>
+
         </section>
 
-        <!-- Social Links Section -->
-        <section class="social-links">
-            <h3>Find me on:</h3>
-            <a href="https://www.linkedin.com/in/kerrytoorcana/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a href="https://github.com/ktoorcana" target="_blank" rel="noopener noreferrer">Github</a>
-            <a href="https://www.instagram.com/kerryhtx/" target="_blank" rel="noopener noreferrer">Instagram</a>
-            <a href="https://www.flickr.com/photos/202078742@N05/" target="_blank" rel="noopener noreferrer">Flickr</a>
-            <a href="https://bsky.app/profile/kerryhtx.bsky.social" target="_blank" rel="noopener noreferrer">Bluesky</a>
+        <!-- Section Skills -->
+        <section id="skills" class="container skills-flex">
+            <h2>Skills</h2>
+            <div class="skills-columns">
+                <div class="skills-col">
+                    <h4>
+                        <img src="images/icons/advertising.png" title="Advertising Platforms" alt="Advertising Icon" class=""skill-icon" loading="lazy">
+                        Advertising Platforms
+                    </h4>
+                    <p>Google Adwords, Meta Business Suite, Revinate, Sprout Social</p>
+
+                    <h4>
+                        <img src="images/icons/content.png" title="Content Production" alt="Content Icon" class=""skill-icon" loading="lazy">
+                        Content Production
+                    </h4>
+                    <p>Blog Writing, Copywriting, Graphic Design, Photography, Videography</p>
+                
+                    <h4>
+                        <img src="images/icons/desktop.png" title="Desktop Software" alt="Desktop Icon" class=""skill-icon" loading="lazy">
+                        Desktop Software
+                    </h4>
+                    <p><em>Adobe Suite:</em> Illustrator, InDesign, Lightroom, Photoshop, Premiere Pro</p>
+                    <p><em>MS-Office:</em> Excel, Outlook, PowerPoint, Word</p>
+                    <p>Jupyter Notebook, VS Code, Visual Studio</p>
+                </div>
+                <div class="skills-col">
+                    <h4>
+                        <img src="images/icons/profession.png" title="Professional Knowledge" alt="Professional Icon" class=""skill-icon" loading="lazy">
+                        Professional Knowledge
+                    </h4>
+                    <p>Budgeting, Brand Marketing, Event Marketing & Operations, Forecasting, Settlement, Social Media Marketing</p>
+                
+                    <h4>
+                        <img src="images/icons/program.png" title="Programming Languages & Libraries" alt="Programming Icon" class=""skill-icon" loading="lazy">
+                        Programming Languages & Libraries
+                    </h4>
+                    <p>CSS & HTML, Matplotlib, Python</p>
+
+                    <h4>
+                        <img src="images/icons/web.png" title="Web Platforms" alt="Web Icon" class=""skill-icon" loading="lazy">
+                        Web Platforms
+                    </h4>
+                    <p>Asana, Canva, Github, Google Analytics, Looker Studio, Meltwater, Midjourney, OpenAI tools, Runway ML, SurveyMonkey, Webflow CMS, WordPress</p>
+                </div>
+            </div>
         </section>
 
-        <!-- Resume Section -->
-        <section class="resume">
-            <h3>My Resume</h3>
-            <p><a href="https://drive.google.com/file/d/1XYm_aSgPgMNXf4as8rUXMK9mCADMcac3/view?usp=sharing" target="_blank" rel="noopener noreferrer">View my resume</a></p>
+        <!-- Profile Section About Me -->
+        <section id="about" class="container about-flex">
+            <div class="about-text">
+                <h2>About Me</h2>
+                <p>
+                    Hi, my name is Kerry M. Toorcana and welcome to my portfolio site! I am 
+                    a marketer who uses photography, videography, data insights, and 
+                    other multimedia applications in my daily workflow. I am also an 
+                    aspiring coder, currently learning Python and some basic 
+                    web-development languages. Explore my portfolio, skills and 
+                    experience to learn more about me.
+                </p>
+                <a href="docs/ktoorcana_resume_pub.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="resume-button">
+                    My Resume
+                </a>
+                <a href="mailto:kerrytoorcana@gmail.com" 
+                class="resume-button contact-button">Contact Me</a>
+            </div>
+            <div class="about-img">
+                <img src="images/KerryMToorcana400x400.webp" alt="Kerry M. Toorcana" class="profile-img" loading="lazy" />
+            </div>
         </section>
     </div>
 
     <footer>
-        <p>&copy; 2025 Website Designed & Built by Kerry M. Toorcana</p>
+        <p>&copy; 2025 Website Designed & Built by Kerry M. Toorcana (Work in Progress)</p>
     </footer>
    
+    <!-- Photography javascript --> 
+    <script>
+        const captions = [
+            "Black-bellied ducks stay still while floating on the waters of Whistler Pond located in Anahuac, TX.",
+            "Aerialist Dom Liebentritt performs at the Moody Gardens Hotel during the Holiday Fantasy show.",
+            "Wine glasses filled with different varietals for the wine dinner event at Shearn's Restaurant.",
+            "High view of the Assiduity Mural painted on the side of the Sam Houston Hotel.",
+            "Thomas Gu of TeaGu Cafe pop-up prepares morsels during the Sake Festival at POST Houston.",
+            "Graffit painted in 'Texas'lettering with a row of custom cars in front at the Harrisburg Arts Museum.",
+            "Model Lauren Vickrey's professional headshot taken in the warehouse district of Houston.",
+            "A swamp rabbit munches on the delicious vegetation found on property at Moody Gardens.",
+            "A vendor from Miratech speaks to a group at the Gas Compressors Association Expo.",
+            "Rows of cupcakes await diners during the Thanksgiving Brunch at the Moody Gardens Hotel."
+        ];
+
+        let currentIndex = 0;
+
+        function openModal(index) {
+            currentIndex = index;
+            document.getElementById("modal").style.display = "block";
+            showImage(currentIndex);
+        }
+        function closeModal() {
+            document.getElementById("modal").style.display = "none";
+        }
+        function showImage(index) {
+            currentIndex = (index + captions.length) % captions.length;
+
+            const modalImg = document.getElementById("modal-image");
+            const captionText = document.getElementById("modal-caption");
+            const thumbnails = document.querySelectorAll("#modal .modal-thumbs img");
+
+            // Fade-in transition
+            modalImg.classList.remove("fade-in");
+            void modalImg.offsetWidth; // Forces reflow
+            modalImg.classList.add("fade-in");    
+
+            modalImg.src = `images/photos/image${currentIndex + 1}.jpg`;
+            captionText.textContent = captions[currentIndex]
+            
+            // Highlight the selected thumbnail
+            thumbnails.forEach((thumb, i) => {
+                thumb.classList.toggle('selected', i === currentIndex);
+                if (i === currentIndex) {
+                    thumb.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest"});
+                }
+            });
+        }    
+        function changeImage(direction) {
+            currentIndex = (currentIndex + direction + captions.length) % captions.length;
+            showImage(currentIndex);
+        }
+    </script>
+    
+    <!-- Design Work javascript -->
+     <script>
+        const designCaptions = [
+            "Artificial Woman: Image generated in Midjourney, Illustrator logo, Photoshop finish.",
+            "Cameo Sneaker Ad Concept. Midjourney image, Illustrator font, InDesign layout.",
+            "Mode Élevée Tourism Ad Concept. Designed in Illustrator and finalized in Photoshop.",
+            "Solar Living Renewable Energy Concept. Designed completely in Illustrator.",
+            "Hair Color Style 4-Up. Image manipulation using Photoshop.",
+            "Going Green PSA Garden Ad. Image generated in MidJourney, layout in InDesign.",
+            "Stellar Drifters Comic Book. Title in Illustrator, MidJourney image, Photoshop finish.",
+            "Watermelon Soda. Font in Illustrator, images by MidJourney, and Photoshop finish.",
+            "Spirit Dog. Image manipulation using stock images and assembled in Photoshop.",
+            "Wizard Drawing. Character designed in Illustrator with text added in Photoshop."
+        ];
+
+        let currentDesignIndex = 0;
+
+        function openDesignModal(index) {
+            currentDesignIndex = index;
+            document.getElementById("designModal").style.display = "block";
+            showDesignImage(currentDesignIndex);
+        }
+        function closeDesignModal(index) {
+            document.getElementById("designModal").style.display = "none";
+        }
+        function showDesignImage(index) {
+            currentDesignIndex = (index + designCaptions.length) % designCaptions.length; //wraparound
+
+            const modalImg = document.getElementById("design-modal-image");
+            const captionText = document.getElementById("design-modal-caption");
+            const thumbnails = document.querySelectorAll('#designModal .modal-thumbs img');
+
+            // Fade-in transition    
+            modalImg.classList.remove("fade-in");
+            void modalImg.offsetWidth; // trigger reflow
+            modalImg.classList.add("fade-in");
+
+            modalImg.src= `images/design/image${currentDesignIndex + 1}.jpg`;
+            captionText.textContent = designCaptions[currentDesignIndex];
+
+            // Highlight the selected thumbnail
+            thumbnails.forEach((thumb, i) => {
+                thumb.classList.toggle('selected', i === currentDesignIndex);
+                // Scroll thumbnail into center view
+                if (i === currentDesignIndex) {
+                    // Scroll thumbnail into center view
+                    thumb.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest"});
+                }
+            });
+        }
+
+        function changeDesignImage(offset) {
+            showDesignImage(currentDesignIndex + offset);
+        }
+     </script>
+    
 </body>
 </html>
