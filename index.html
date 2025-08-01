@@ -133,10 +133,13 @@
             }
         }
         /* for small screens */
-        @media (max-width: 600px) { 
+        @media (max-width: 768px) { 
             .hero {
-                border-radius: 0; 
-                max-width: 100%;
+                background-size: contain;
+                background-repeat: no-repeat;
+                background-position: center;
+                aspect-ratio: auto;
+                padding: 40px 10px;
             }
         }
 
