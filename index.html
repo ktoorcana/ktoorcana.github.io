@@ -220,7 +220,7 @@
         }
         /* Modal Image Content */
         .modal-content img {
-            max-height: 500px;
+            max-height: 600px;
             max-width: 100%;
             border-radius: 8px;
             display: block;
@@ -454,7 +454,12 @@
                     <!-- Adding navigation arrows to gallery -->
                     <span class="modal-prev" onclick="changeImage(-1)">&#10094;</span>
                     <span class="modal-next" onclick="changeImage(1)">&#10095;</span>
-                    <img id="modal-image" src="" alt="">
+                    <!-- <img id="modal-image" src="" alt=""> --> 
+                    <picture id="modal-picture">
+                        <source id="modal-source-webp" type="image/webp">
+                        <source id="modal-source-jpg" type="image/jpg">
+                        <img id="modal-image" src="" alt="" class="fade-in">
+                    </picture>
                     <div id="modal-caption" class="caption"></div>
                     <div class="modal-thumbs">
                         <!-- Scrollable thumbnails inside modal -->
@@ -486,7 +491,12 @@
                 <div class="modal-content">
                     <span class="modal-prev" onclick="changeDesignImage(-1)">&#10094;</span>
                     <span class="modal-next" onclick="changeDesignImage(1)">&#10095;</span>
-                    <img id="design-modal-image" src="" alt="">
+                    <!-- <img id="design-modal-image" src="" alt=""> -->
+                    <picture id="modal-picture">
+                        <source id="modal-source-webp" type="image/webp">
+                        <source id="modal-source-jpg" type="image/jpg">
+                        <img id="design-modal-image" src="" alt="" class="fade-in">
+                    </picture>
                     <div id="design-modal-caption" class="caption"></div>
                     <div class="modal-thumbs">
                         <img src="images/design/image1.jpg" onclick="showDesignImage(0)">
@@ -499,6 +509,8 @@
                         <img src="images/design/image8.jpg" onclick="showDesignImage(7)">
                         <img src="images/design/image9.jpg" onclick="showDesignImage(8)">
                         <img src="images/design/image10.jpg" onclick="showDesignImage(9)">
+                        <img src="images/design/image11.jpg" onclick="showDesignImage(10)">
+                        <img src="images/design/image12.jpg" onclick="showDesignImage(11)">
                     </div>
                 </div>
             </div>
@@ -535,7 +547,7 @@
                         <img src="images/icons/profession.png" title="Professional Knowledge" alt="Professional Icon" class=""skill-icon" loading="lazy">
                         Professional Knowledge
                     </h4>
-                    <p>Budgeting, Brand Marketing, Event Marketing & Operations, Forecasting, Settlement, Social Media Marketing</p>
+                    <p>Budgeting, Brand Marketing, Event Marketing & Operations, Forecasting, SEO/SEM, Settlement, Social Media Marketing</p>
                 
                     <h4>
                         <img src="images/icons/program.png" title="Programming Languages & Libraries" alt="Programming Icon" class=""skill-icon" loading="lazy">
@@ -611,16 +623,24 @@
         function showImage(index) {
             currentIndex = (index + captions.length) % captions.length;
 
+            const webpSource = document.getElementById("modal-source-webp");
+            const jpgSource = document.getElementById("modal-source-jpg");    
             const modalImg = document.getElementById("modal-image");
             const captionText = document.getElementById("modal-caption");
             const thumbnails = document.querySelectorAll("#modal .modal-thumbs img");
+
+            const basePath = `images/photos/image${currentIndex + 1}`;
+
+            webpSource.srcset = `${basePath}.webp`;
+            jpgSource.srcset = `${basePath}.jpg`;
+            modalImg.src = `${basePath}.jpg`; // fallback
 
             // Fade-in transition
             modalImg.classList.remove("fade-in");
             void modalImg.offsetWidth; // Forces reflow
             modalImg.classList.add("fade-in");    
 
-            modalImg.src = `images/photos/image${currentIndex + 1}.jpg`;
+            // modalImg.src = `images/photos/image${currentIndex + 1}.jpg`;
             captionText.textContent = captions[currentIndex]
             
             // Highlight the selected thumbnail
@@ -649,7 +669,9 @@
             "Stellar Drifters Comic Book. Title in Illustrator, MidJourney image, Photoshop finish.",
             "Watermelon Soda. Font in Illustrator, images by MidJourney, and Photoshop finish.",
             "Spirit Dog. Image manipulation using stock images and assembled in Photoshop.",
-            "Wizard Drawing. Character designed in Illustrator with text added in Photoshop."
+            "Wizard Drawing. Character designed in Illustrator with text added in Photoshop.",
+            "Tri-fold Front. InDesign layout, Illustrator characters & panels, MidJourney images.",
+            "Tri-fold Back. Indesign layout, Illustrator shapes & color, MidJourney images."
         ];
 
         let currentDesignIndex = 0;
@@ -665,16 +687,24 @@
         function showDesignImage(index) {
             currentDesignIndex = (index + designCaptions.length) % designCaptions.length; //wraparound
 
+            const webpSource = document.getElementById("modal-source-webp");
+            const jpgSource = document.getElementById("modal-source-jpg");    
             const modalImg = document.getElementById("design-modal-image");
             const captionText = document.getElementById("design-modal-caption");
             const thumbnails = document.querySelectorAll('#designModal .modal-thumbs img');
+
+            const basePath = `images/design/image${currentDesignIndex + 1}`;
+
+            webpSource.srcset =`${basePath}.webp`;
+            jpgSource.srcset =`${basePath}.jpg`;
+            modalImg.src =`${basePath}.jpg`; // fallback
 
             // Fade-in transition    
             modalImg.classList.remove("fade-in");
             void modalImg.offsetWidth; // trigger reflow
             modalImg.classList.add("fade-in");
 
-            modalImg.src= `images/design/image${currentDesignIndex + 1}.jpg`;
+            // modalImg.src= `images/design/image${currentDesignIndex + 1}.jpg`;
             captionText.textContent = designCaptions[currentDesignIndex];
 
             // Highlight the selected thumbnail
